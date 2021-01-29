@@ -1,0 +1,27 @@
+{% load static %}
+
+<div id="sidebar-container" class="bg-primary">
+    <div class="logo">
+        <h4 class="text-light font-weight-bold mb-0">Lafayette</h4>
+    </div>
+    <div class="menu">
+        <a href="{% url 'app:inicio' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
+            Inicio</a>
+
+            {% if request.user.is_staff  %}   
+        <a href="{% url 'login_app:listuser' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
+            Socios Registrados</a>
+            {% endif   %}
+
+
+        <a href="{% url 'app:tablacliente' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+            Cliente Referidos</a>
+
+        <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+            Registrar propiedades</a>
+
+        <a href="{% url 'login_app:user-logout' %}"  class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i>
+            Salir</a>
+
+    </div>
+</div>
