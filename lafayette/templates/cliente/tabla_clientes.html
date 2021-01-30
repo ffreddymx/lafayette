@@ -18,6 +18,7 @@
             <table class="table table-sm  table-hover ">
             <thead class="text-white bg-secondary">
                 <tr>
+                <th>Socio</th>   
                 <th>Cliente</th>
                 <th>Operacion</th>
                 <th>Producto</th>
@@ -25,15 +26,15 @@
                 <th>Estado</th>
                 <th>Telefono</th>
                 <th>Acción</th>
-                <th width="90px">Nota</th>
                 <th width="20" >Editar</th>
-                <th width="20" >Vender</th>
+                <th width="20" >Mas</th>
                 </tr>
             </thead>
             <tbody>
 
                 {% for e in users  %}
                 <tr>
+                <td>{{e.user}} </td>
                 <td>{{e.cliente}} </td>
                 <td>{{e.operacion}} </td>
                 <td>{{e.producto}} </td>
@@ -41,11 +42,10 @@
                 <td>{{e.estado}} </td>
                 <td>{{e.telefono}} </td>
                 <td>{{e.opcion}} </td>
-                <td>{{e.nota}} </td>
                 {% if not e.is_staff  %}
                 <td width="20"><a class="btn btn-sm btn-danger" href=" {% url 'app:updatecliente' e.id  %} ">Editar</a></td>
                 {% endif   %}
-                <td width="20"><a class="btn btn-sm btn-danger" href=" {% url 'app:finventa' e.id  %} ">Vendido</a></td>
+                <td width="20"><a class="btn btn-sm btn-danger" href=" {% url 'app:finventa' e.id  %} ">Detalles</a></td>
 
             </tr>
                 {% endfor %}

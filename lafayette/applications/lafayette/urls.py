@@ -16,4 +16,6 @@ urlpatterns = [
    path('updatecliente/<pk>/', views.ClienteUpdate.as_view(),name='updatecliente'),
    path('finventa/<pk>/', views.FinVenta,name='finventa'),
    path('tablacliente/', views.listaClientes,name='tablacliente'),
+
+   path('qsomos/',views.Qsomos.as_view(),name='qsomos'),
 ]

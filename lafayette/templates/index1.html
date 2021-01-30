@@ -8,10 +8,12 @@ lafayette
 
 {% block content %}
 
+
 {% include 'nav.html' %}
 
+    <div id="content" class="bg-grey w-100">
         <div class="container">
-        <div class="mu-header-featured-area" >
+            <div class="row" >
 
             <div class="mu-header-featured-content">
                 <h3>Bienvenido a <span>lafayette</span></h3>
@@ -19,7 +21,6 @@ lafayette
                 <h6 style="margin: 0%;">Lafayette Inmobiliaria Calle 27 de Febrero H. Cárdenas, Tab.Col. Pueblo Nuevo. 86500</h6>
                 <h6 >Teléfonos: 9931820190, Email: lafayetterealstate@gmail.com    </h6>
                 </div>
-            </div>
 
 
               <div class="card-group"  >
@@ -35,11 +36,9 @@ lafayette
                     </div>
                 </div>
                 {% endfor %}
-
-                </div>
-
+              </div>
+            </div>
     <div class="row" >
-
         {% if users.has_other_pages %}
                
         <nav aria-label="Page navigation example">
@@ -71,7 +70,7 @@ lafayette
           {% endif %}
 
     </div>
-</div >
-
+</div>
+</div>
 
 {% endblock content %}

@@ -37,6 +37,9 @@ class InicioView(LoginRequiredMixin,TemplateView):
     template_name = 'inicio.html'
     login_url = reverse_lazy('login_app:login')
 
+class Qsomos(LoginRequiredMixin,TemplateView):
+    template_name = 'qsomos.html'
+    login_url = reverse_lazy('login_app:login')
 ######################################  DAtos de otros contactos
 
 class ContactoCreateView(CreateView):
@@ -98,7 +101,11 @@ class ClienteUpdate(UpdateView):
 
 
 def listaClientes(request):
-    productosx = Amigo.objects.filter(user = request.user)
+
+    if request.user.is_staff: 
+        productosx = Amigo.objects.all()
+    else:
+        productosx = Amigo.objects.filter(user = request.user)
 
     #productosx = Amigo.objects.all().order_by('cliente')
     nombres = productosx
