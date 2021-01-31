@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+lafayette
+{% endblock title %}
+
+
+{% block content %}
+
+
+{% include 'nav.html' %}
+
+    <div id="content" class=" w-100">
+        <div class="container">
+            <div class="row" >
+
+            <div class="mu-header-featured-content  ">
+                <h3 class="text-white">Bienvenido a <span>lafayette</span></h3>
+                <h6 style="margin: 0%;">GANA DINERO EXTRA CON NUESTRO MLM, LAFAYETTE INMOBILIARIA </h6>
+                <h6 style="margin: 0%;">Lafayette Inmobiliaria Calle 27 de Febrero H. Cárdenas, Tab.Col. Pueblo Nuevo. 86500</h6>
+                <h6 >Teléfonos: 9931820190, Email: lafayetterealstate@gmail.com    </h6>
+                </div>
+
+
+              <div class="card-group"  >
+                {% for e in users  %}
+                <div class="card"  > 
+                  <img class="card-img-top" src="/{{ e.img }}"  >
+                  <div class="card-body">
+                    <h5 class="card-title"> <b>{{e.titulo}} </b></h5>
+                    <p class="card-text">{{e.nota}}.</p>
+                </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{e.municipio}}, {{e.estado}} </small>
+                    </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            
+    <div class="row" >
+        {% if users.has_other_pages %}
+               
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                
+                {% if users.has_previous %}
+                <li class="page-item ">
+                    <a class="page-link" href="?page={{page_obj.previous_page_number}}" >Atras</a>
+                </li>
+                {% endif %}
+                    
+                    {% for i in users.paginator.page_range  %}               
+                    {% if users.number == i %}
+                    <li class="page-item"><a class="page-link">{{i}}</a> </li>
+                     {% else %} 
+                     <li class="page-item"><a class="page-link" href="?page={{i}}" >{{i}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    
+              {% if users.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{users.next_page_number}}" >Siguiente</a>
+             </li>
+             {% endif %}
+    
+            </ul>
+          </nav>
+    
+          {% endif %}
+
+    </div>
+</div>
+</div>
+
+{% endblock content %}

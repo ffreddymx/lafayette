@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bienvenido
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="d-flex" id="content-wrapper">
+{% include 'header.html' %}
+
+<div class="w-100">
+    <div id="content" class="bg-grey w-100">
+
+        <section class="bg-light py-3">
+        <div class="container">
+        <div class="mu-header-featured-area" style="margin-top: 30px;">
+            <div class="mu-header-featured-img" >
+            </div>
+
+            <div class="mu-header-featured-content">
+                <h1>Bienvenido <span>{{user}}</span></h1>
+                <p>GANA DINERO EXTRA CON NUESTRO MLM</p>
+
+                <div class="mu-app-download-area">
+                    <h4>UNETE A NUESTRO EQUIPO DE NETWORKMARKETING FORMA PARTE DE</h4>
+                    <p>LAFAYETTE INMOBILIARIA Y GANA INGRESOS EXTRAS..</p>
+                    <img  src="{% static 'img/logo.jpg' %}" alt=""  >
+
+                </div>
+
+                </div>
+            </div>
+        </div >
+    </section> 
+    </div>
+</div>
+</div>
+{% endblock content %}

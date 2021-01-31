@@ -1,0 +1,44 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'jquery/jquery.min.js'  %}"></script>
+    <script type="text/javascript" src="{% static 'jquery/jquery.js'  %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js'  %}"></script>
+
+
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+    <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <title> 
+    {% block title %}
+        Lafayette
+    {% endblock title %}
+   </title>
+
+   <script type="text/javascript">
+
+        var user = '{{ request.user }}' 
+
+   </script>
+
+</head>
+<body  style=" background-color: #eee; background: linear-gradient(to top, #fff 10%, rgba(93, 42, 141, 0.4) 90%) no-repeat">
+    
+
+
+    {% block content %}
+        
+    {% endblock content %}
+
+    <script type="text/javascript" src=" {% static 'js/bootstrap.min.js' %}  "> </script>
+    <script type="text/javascript" src=" {% static 'js/bootstrap.js' %}  "> </script>
+    <script type="text/javascript" src=" {% static 'jquery/jquery.js' %}  "> </script>
+
+
+    
+</body>
+</html>

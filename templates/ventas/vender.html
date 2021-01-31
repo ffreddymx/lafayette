@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+{% load static %}
+
+{% block title %}
+lafayette
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+        <section class=" py-1">
+        <div class="container">
+        <div class="mu-header-featured-area" style="margin-top: 0px;">
+
+            <div class="mu-header-featured-content">
+                <h2>Bienvenido a lafayette</h2>
+                <p>Amigos de lafayette Inmobiliaria. <b> Quiero me ayuden a vender/rentar mi propiedad </b> </p>
+                <p>Les dejo mis datos para contactarme</p>
+
+
+                <form method="POST" enctype="multipart/form-data" novalidate> 
+                    {% csrf_token %} 
+                    <div class="row">
+              
+                      <div class="col">
+                        {{ form.nombre|as_crispy_field }}
+                      </div>         
+                      <div class="col">
+                        {{ form.telefono|as_crispy_field }}
+                      </div>         
+                      
+                      <div class="col">
+                        {{ form.opcion|as_crispy_field }}
+                      </div>  
+        
+                    </div>
+        
+                    <div class="row">
+                        <div class="col">
+                            {{ form.datos|as_crispy_field }}
+                          </div>     
+                    </div>
+
+                      <div class="col">
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                       </div> 
+            
+                  </form>
+
+
+
+                </div>
+            </div>
+        </div >
+    </section> 
+
+{% endblock content %}

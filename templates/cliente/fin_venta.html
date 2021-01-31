@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+
+{% block title %}
+    
+{% endblock title %}
+    
+{% block content %}
+
+<div class="d-flex" id="content-wrapper">
+    {% include 'header.html' %}
+    
+    <div class="w-100">
+        <div id="content" class="bg-grey w-100">
+  
+  <div class="container" style="margin-top: 20px;  ">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8">
+                  <h2 class="font-weight-bold mb-0">{{alumnos.cliente}}</h2>
+                  <h5 class="font-weight-bold mb-0">{{alumnos.titulo}}</h5>
+                  <p class="lead text-muted">Finalizar la venta del inmueble</p>
+
+                </div>
+                <div class="col-lg-3 col-md-4 d-flex">
+                
+                    <form method="POST" novalidate>  {% csrf_token %} 
+                        <input type="hidden" value="{{alumnos.precio }}" name="valor" >
+                  <button type="submit" class="btn btn-primary w-100 align-self-center">Finalizar Venta</button>
+                   </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="card rounded-0">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                            <div class="mx-auto">
+                                <h6 class="text-muted">Precio</h6>
+                                <h3 class="font-weight-bold">{{alumnos.precio}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                            <div class="mx-auto">
+                                <h6 class="text-muted">Lugar</h6>
+                                <h4 class="font-weight-bold">{{alumnos.municipio}}, {{alumnos.estado}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 d-flex my-3">
+                            <div class="mx-auto">
+                                <h6 class="text-muted">Teléfono</h6>
+                                <h4 class="font-weight-bold">{{alumnos.telefono}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 d-flex my-3">
+                            <div class="mx-auto">
+                                <h6 class="text-muted">Venta Finalizada</h6>
+                                <h3 class="font-weight-bold">
+                                    {% if alumnos.finalizada  %}
+                                     Si
+                                    {% else %}  
+                                     No
+                                    {% endif %}
+
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="card rounded-0">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 > {{alumnos.nota}} </h5>
+
+                        <img  src="/{{ alumnos.img }}">
+                    </div>
+                </div>
+            </div>       
+     </div>
+    </div>
+  </div>
+ </div>
+
+
+
+{% endblock content %}
