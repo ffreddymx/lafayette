@@ -1,20 +1,23 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView,UpdateView,TemplateView,ListView,FormView
+from django.views.generic import CreateView,UpdateView,TemplateView,ListView,FormView,DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
+from django.db.models import Q
+from django.contrib import messages
 
 from .models import Amigo,Contacto
 from .forms import Amigoform,Contactoform
 from django.contrib.auth import get_user_model
 
 # Create your views here.
+# Q(proyecto__icontains=nombre) | Q(sede__icontains=nombre) 
 
 def Index2View(request):
-    productosx = Amigo.objects.filter(publicar__icontains=1).order_by('cliente')
+    productosx = Amigo.objects.filter(Q(publicar__icontains=1) and Q(finalizada__icontains=False) )
     nombres = productosx
 
     if request.POST.get('kword'):
@@ -41,6 +44,47 @@ class Qsomos(TemplateView):
     template_name = 'qsomos.html'
 ######################################  DAtos de otros contactos
 
+class RegistrarCreateView(LoginRequiredMixin,CreateView):
+    template_name = "cliente/registrar.html"
+
+    model = Contacto
+    form_class = Contactoform
+    success_url = reverse_lazy('app:ventacompra')
+
+    def form_valid(self, form):
+        alumnos = form.save(commit = False)
+        alumnos.user = self.request.user
+        alumnos.save()
+        return super(RegistrarCreateView, self).form_valid(form)
+
+    login_url = reverse_lazy('login_app:login')
+
+
+class RegistrarUpdate(UpdateView):
+    template_name = "cliente/registrar.html"
+    model = Contacto
+    fields = [ 
+        'nombre',
+        'telefono',
+        'opcion',
+        'datos',
+        'email',
+    ]
+    success_url = reverse_lazy('app:ventacompra')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, ** kwargs)
+
+class RegistrarDeleteView(DeleteView):
+    model = Contacto
+    template_name = "cliente/borrar_registro.html"
+    success_url = reverse_lazy('app:ventacompra')
+
+
+
+
+
 class ContactoCreateView(CreateView):
     template_name = "ventas/vender.html"
     model = Contacto
@@ -58,15 +102,18 @@ class ContactoCreateView(CreateView):
 
 def listaVentaCompra(request):
 
-    productosx = Contacto.objects.all()
-    
+    if request.user.is_staff: 
+        productosx = Contacto.objects.all().order_by('nombre')
+    else:
+        productosx = Contacto.objects.filter(user = request.user).order_by('nombre')
+
     nombres = productosx
 
     if request.POST.get('kword'):
         nombre = request.POST.get('kword')
         nombres = productosx.filter(nombre__icontains=nombre).order_by('cliente')
     
-    paginator = Paginator(nombres, 4)  
+    paginator = Paginator(nombres, 8)  
     page = request.GET.get('page')
     users = paginator.get_page(page)
 
@@ -113,6 +160,11 @@ class ClienteUpdate(UpdateView):
         self.object = self.get_object()
         return super().post(request, *args, ** kwargs)
 
+class ClienteDeleteView(DeleteView):
+    model = Amigo
+    template_name = "cliente/borrar_referido.html"
+    success_url = reverse_lazy('app:tablacliente')
+
 
 def listaClientes(request):
 
@@ -154,6 +206,8 @@ def FinVenta(request, pk):
             obj = Amigo.objects.get(id = pk)
             obj.finalizada = True
             obj.save()
+
+            messages.info(request,'Este Inmueble se finalizo con Exito... !!')
 
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 #,'form':form,'Pagosz':objetos

@@ -27,7 +27,7 @@ class Amigo(models.Model):
         ('2','Privada'),
     )
     user = models.ForeignKey(Userr, null=True,blank=True, on_delete=models.CASCADE)
-    cliente = models.CharField('Nombre del Cliente', max_length=60)
+    cliente = models.CharField('Nombre Completo del Cliente', max_length=60)
     operacion = models.ForeignKey(Operacion, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     municipio = models.CharField('Municipio', max_length=50)
@@ -50,11 +50,12 @@ class Contacto(models.Model):
         ('Vender','Vender'),
         ('Rentar','Rentar'),
     )
-
+    user = models.ForeignKey(Userr, null=True,blank=True, on_delete=models.CASCADE)
     nombre = models.CharField('Nombre del Cliente', max_length=60)
     telefono = models.CharField('Número de teléfono', max_length=10)
     opcion = models.CharField('Vender o Rentar', max_length=20,choices=opc)
     datos = models.CharField('Datos de la propiedad', max_length=600)
+    email = models.EmailField('Correo Electronico')
 
     def __str__(self):
         return self.nombre 

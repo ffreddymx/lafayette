@@ -10,6 +10,7 @@ urlpatterns = [
     path('addusuario/', views.RegistroUserView.as_view(), name='addusuario'),
     path('login/', views.LoginUser.as_view(), name='user-login'),
     path('logout/', views.SalirView.as_view(), name='user-logout'),
+    path('update/<pk>/', views.UserUpdate.as_view(), name='user-update'),
 
     path('listuser/', views.listaUsuarios, name='listuser'),
     path('borraruser/<pk>/', views.UserDeleteView.as_view(),name='borraruser'),

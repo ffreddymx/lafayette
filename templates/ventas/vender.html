@@ -40,6 +40,9 @@ lafayette
                     </div>
         
                     <div class="row">
+                      <div class="col">
+                        {{ form.email|as_crispy_field }}
+                      </div> 
                         <div class="col">
                             {{ form.datos|as_crispy_field }}
                           </div>     

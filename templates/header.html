@@ -17,13 +17,9 @@
         <a href="{% url 'app:tablacliente' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
             Cliente Referidos</a>
 
-        {% if request.user.is_staff  %}     
         <a href="{% url 'app:ventacompra' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
             Registrar propiedades</a>
-        {% else %}    
-        <a href="{% url 'app:contacto' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
-                Registrar propiedades</a>
-        {% endif   %}
+  
 
         <a href="{% url 'login_app:user-logout' %}"  class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i>
             Salir</a>

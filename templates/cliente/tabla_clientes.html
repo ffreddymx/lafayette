@@ -28,6 +28,7 @@
                 <th>Acción</th>
                 <th width="20" >Editar</th>
                 <th width="20" >Mas</th>
+                <th width="20" >Borrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,9 +44,10 @@
                 <td>{{e.telefono}} </td>
                 <td>{{e.opcion}} </td>
                 {% if not e.is_staff  %}
-                <td width="20"><a class="btn btn-sm btn-danger" href=" {% url 'app:updatecliente' e.id  %} ">Editar</a></td>
+                <td width="20"><a class="btn btn-sm btn-info" href=" {% url 'app:updatecliente' e.id  %} "><i class="icon ion-md-brush mr-0"></i></a></td>
                 {% endif   %}
-                <td width="20"><a class="btn btn-sm btn-danger" href=" {% url 'app:finventa' e.id  %} ">Detalles</a></td>
+                <td width="20"><a class="btn btn-sm btn-warning" href=" {% url 'app:finventa' e.id  %} "><i class="icon ion-ios-browsers mr-0"></i></a></td>
+                <td width="20" align="center"><a class="btn btn-sm btn-danger" href=" {% url 'app:borrarcliente' e.id  %} "><i class="icon ion-md-trash mr-0"></i></a></td>
 
             </tr>
                 {% endfor %}

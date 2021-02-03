@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 from .forms import RegistroUserForm, LoginForm
-from django.views.generic import View,DeleteView
+from django.views.generic import View,DeleteView,UpdateView
 from django.views.generic.edit import (
     FormView
 )
@@ -48,7 +48,28 @@ class LoginUser(FormView):
         )
         login(self.request, user)
         return super(LoginUser, self).form_valid(form)
-    
+
+
+class UserUpdate(UpdateView):
+    template_name = "usuario/update_socio.html"
+    model = User
+    fields = [ 
+        'username',
+        'email',
+        'nombres',
+        'apellidos',
+        'municipio',
+        'estado',
+        'genero',
+    ]
+    success_url = reverse_lazy('login_app:listuser')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, ** kwargs)
+
+
+
     
 class SalirView(View):
     def get(self, request, *args, ** kwargs):

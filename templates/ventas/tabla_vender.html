@@ -12,26 +12,38 @@
     <h5>Propiedades Registradas </h5>
 
     <div class="row"   >
-        <a  href=" {% url 'app:contacto' %}" class="btn text-white  bg-success">Vender o Comprar</a>
+        <a  href=" {% url 'app:registrar' %}" class="btn text-white  bg-success">Vender o Comprar</a>
     </div>
     <div class="row">
             <table class="table table-sm  table-hover ">
             <thead class="text-white bg-secondary">
                 <tr>
+                 {% if user.is_staff %}   
+                <th>Usuario</th>   
+                 {% endif %}   
                 <th>Nombre</th>   
                 <th>Teléfono</th>
+                <th>Correo</th>
                 <th>Acción</th>
-                <th>Descripción</th>
+                <th>Descripción</th>                
+                <th width="20">Editar</th>
+                <th width="20">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
 
                 {% for e in users  %}
                 <tr>
+                {% if user.is_staff %}   
+                <td>{{e.user}} </td>
+                {% endif %}    
                 <td>{{e.nombre}} </td>
                 <td>{{e.telefono}} </td>
+                <td>{{e.email}} </td>
                 <td>{{e.opcion}} </td>
                 <td>{{e.datos}} </td>
+                <td width="20" align="center"><a class="btn btn-sm btn-info " href=" {% url 'app:updateregistrar' e.id  %} "><i class="icon ion-md-brush mr-0"></i></a></td>
+                <td width="20" align="center"><a class="btn btn-sm btn-danger" href=" {% url 'app:borrarregistro' e.id  %} "><i class="icon ion-md-trash mr-0"></i></a></td>
             </tr>
                 {% endfor %}
 

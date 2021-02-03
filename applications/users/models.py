@@ -17,7 +17,7 @@ class User(AbstractBaseUser,PermissionsMixin):
         ('ORO','ORO'),
         ('PREMIER','PREMIER'),
     )
-    username = models.CharField(max_length=10, unique = True)
+    username = models.CharField('Usuario',max_length=10, unique = True)
     email = models.EmailField()
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)

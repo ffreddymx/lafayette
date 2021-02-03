@@ -22,7 +22,11 @@
                   <h2 class="font-weight-bold mb-0">{{alumnos.cliente}}</h2>
                   <h5 class="font-weight-bold mb-0">{{alumnos.titulo}}</h5>
                   <p class="lead text-muted">Finalizar la venta del inmueble</p>
-
+                  {% for message in messages %}
+                  <div class="alert alert-success" role="alert">
+                  <h5 class="font-weight-bold mb-0">{{message}}</h5>
+                    </div>
+                  {% endfor %}
                 </div>
                 <div class="col-lg-3 col-md-4 d-flex">
                 

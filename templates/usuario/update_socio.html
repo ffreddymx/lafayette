@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+
+{% block title %}
+    Socios
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="d-flex" id="content-wrapper">
+  {% include 'header.html' %}
+  
+  <div class="w-100">
+      <div id="content" class="bg-grey w-100">
+
+<div class="container" style="margin-top: 50px;  ">
+  <h5>Registrar Socio </h5>
+
+
+    <form method="POST" enctype="multipart/form-data" novalidate> 
+        {% csrf_token %} 
+        <div class="row">
+          <div class="col">
+            {{ form.username|as_crispy_field }}
+          </div>         
+          <div class="col">
+            {{ form.nombres|as_crispy_field }}
+          </div>    
+        <div class="col">
+          {{ form.apellidos|as_crispy_field }}
+        </div>         
+       </div>
+
+        <div class="row">
+      
+            
+            <div class="col">
+              {{ form.genero|as_crispy_field }}
+            </div>          
+
+            <div class="col">
+              {{ form.email|as_crispy_field }}
+          </div>
+          <div class="col">
+            {{ form.municipio|as_crispy_field }}
+        </div>
+          </div>
+
+          <div class="row">
+
+          <div class="col">
+            {{ form.estado|as_crispy_field }}
+        </div>
+
+            <div class="col" style="margin-top: 40px;">
+              <button type="submit" class="btn btn-success">Guardar Socio</button>
+             </div> 
+             <div class="col">
+          </div>
+          </div>
+
+
+
+      </form>
+
+    </div>
+  </div>
+  </div>
+
+</div>
+
+
+{% endblock content %}
