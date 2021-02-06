@@ -169,9 +169,9 @@ class ClienteDeleteView(DeleteView):
 def listaClientes(request):
 
     if request.user.is_staff: 
-        productosx = Amigo.objects.all()
+        productosx = Amigo.objects.filter(finalizada__icontains=False)
     else:
-        productosx = Amigo.objects.filter(user = request.user)
+        productosx = Amigo.objects.filter( Q(user = request.user) & Q(finalizada__icontains=False) )
 
     #productosx = Amigo.objects.all().order_by('cliente')
     nombres = productosx
