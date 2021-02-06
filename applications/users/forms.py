@@ -43,6 +43,34 @@ class RegistroUserForm(forms.ModelForm):
         if self.cleaned_data['pasword1'] != self.cleaned_data['pasword2']:
             self.add_error('pasword2', 'Las contraseña no son iguales...')
 
+    def clean_nombres(self):
+        nombres = self.cleaned_data['nombres']
+
+        if not nombres.isalpha() :
+            raise forms.ValidationError('Este campo solo puede contener texto')
+        return nombres
+
+    def clean_apellidos(self):
+        apellidos = self.cleaned_data['apellidos']
+
+        if not apellidos.isalpha() :
+            raise forms.ValidationError('Este campo solo puede contener texto')
+        return apellidos
+
+    def clean_municipio(self):
+        municipio = self.cleaned_data['municipio']
+
+        if not municipio.isalpha() :
+            raise forms.ValidationError('Este campo solo puede contener texto')
+        return municipio
+
+    def clean_estado(self):
+        estado = self.cleaned_data['estado']
+
+        if not estado.isalpha() :
+            raise forms.ValidationError('Este campo solo puede contener texto')
+        return estado
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(
