@@ -3,7 +3,7 @@ from .models import Amigo,Contacto
 import datetime
 
 
-
+#título de lo que desea
 class Amigoform(forms.ModelForm):
     class Meta:
         model = Amigo
@@ -28,14 +28,25 @@ class Amigoform(forms.ModelForm):
                     'placeholder':'Descripción del inmueble',
                     'rows':'2',
                 }
+            ),
+            'titulo':forms.TextInput(
+                attrs={
+                    'placeholder':'Título de lo que desea',
+                }
             )
         }
 
     def clean_cliente(self):
         cliente = self.cleaned_data['cliente']
 
-        if not cliente.isalpha() :
-            raise forms.ValidationError('Este campo solo puede contener texto')
+        x = cliente.split()
+
+        for da in x:
+            if not da.isalpha():
+                raise forms.ValidationError('Este campo solo puede contener texto')
+
+        #if not cliente.isalpha() :
+        #    raise forms.ValidationError('Este campo solo puede contener texto')
         return cliente
 
     def clean_municipio(self):
@@ -55,8 +66,11 @@ class Amigoform(forms.ModelForm):
     def clean_titulo(self):
         titulo = self.cleaned_data['titulo']
 
-        if not titulo.isalpha() :
-            raise forms.ValidationError('Este campo solo puede contener texto')
+        x = titulo.split()
+
+        for da in x:
+            if not da.isalpha():
+                raise forms.ValidationError('Este campo solo puede contener texto')
         return titulo
 
     def clean_telefono(self):
@@ -74,8 +88,11 @@ class Contactoform(forms.ModelForm):
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
 
-        if not nombre.isalpha() :
-            raise forms.ValidationError('Este campo solo puede contener texto')
+        x = nombre.split()
+
+        for da in x:
+            if not da.isalpha():
+                raise forms.ValidationError('Este campo solo puede contener texto')
         return nombre
 
     def clean_telefono(self):

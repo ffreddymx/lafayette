@@ -26,7 +26,9 @@ lafayette
               <div class="card-group"  >
                 {% for e in users  %}
                 <div class="card"  > 
+                  {% if e.img %}
                   <img class="card-img-top" src="/{{ e.img }}"  >
+                  {% endif %}
                   <div class="card-body">
                     <h5 class="card-title"> <b>{{e.titulo}} </b></h5>
                     <p>Tel : {{e.telefono}} </p>

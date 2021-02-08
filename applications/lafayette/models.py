@@ -38,7 +38,7 @@ class Amigo(models.Model):
     titulo = models.CharField('Título', max_length=300)
     nota = models.CharField('Descripción del inmueble', max_length=300)
     publicar = models.CharField('Esta nota sera ?', max_length=20,choices=opc2)
-    img=models.ImageField('Seleccionar una imagen',upload_to = 'static/media')
+    img=models.ImageField('Seleccionar una imagen',upload_to = 'static/media',null=True,blank=True)
     precio = models.FloatField('Precio ',max_length=50)
     finalizada = models.BooleanField(default=False) 
     

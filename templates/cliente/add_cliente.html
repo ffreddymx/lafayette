@@ -85,4 +85,24 @@
 
 </div>
 
+<script>
+  $(document).ready(function(){
+
+    $('#id_opcion').on('change',function(){
+        var selectValor = $(this).val();
+        //alert (selectValor);
+
+        if (selectValor == 'Desea') {
+          $('#div_id_img').hide();
+
+        } else {
+            $('#div_id_img').show();
+        }
+    });
+
+
+  });
+  </script>  
+
+
 {% endblock content %}

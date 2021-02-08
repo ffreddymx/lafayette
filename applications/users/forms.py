@@ -46,15 +46,22 @@ class RegistroUserForm(forms.ModelForm):
     def clean_nombres(self):
         nombres = self.cleaned_data['nombres']
 
-        if not nombres.isalpha() :
-            raise forms.ValidationError('Este campo solo puede contener texto')
+        x = nombres.split()
+
+        for da in x:
+            if not da.isalpha():
+                raise forms.ValidationError('Este campo solo puede contener texto')
         return nombres
 
     def clean_apellidos(self):
         apellidos = self.cleaned_data['apellidos']
 
-        if not apellidos.isalpha() :
-            raise forms.ValidationError('Este campo solo puede contener texto')
+        x = apellidos.split()
+
+        for da in x:
+            if not da.isalpha():
+                raise forms.ValidationError('Este campo solo puede contener texto')
+
         return apellidos
 
     def clean_municipio(self):
