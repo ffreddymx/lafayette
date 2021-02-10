@@ -9,8 +9,8 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib import messages
 
-from .models import Amigo,Contacto
-from .forms import Amigoform,Contactoform
+from .models import Amigo,Contacto,Prospecto
+from .forms import Amigoform,Contactoform,Prospectoform
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -69,6 +69,13 @@ class RegistrarUpdate(UpdateView):
         'opcion',
         'datos',
         'email',
+
+        'ubicacion',
+        'tipo',
+        'municipio',
+        'colonia',
+        'calle',
+        'cp',
     ]
     success_url = reverse_lazy('app:ventacompra')
 
@@ -119,9 +126,69 @@ def listaVentaCompra(request):
 
     return render(request, 'ventas/tabla_vender.html', {'nombres':nombres,'users':users})
 
+######################################  PROSPECTO ####################################################################### PROSPECTO
+class ProspectoCreateView(LoginRequiredMixin,CreateView):
+    template_name = "prospecto/add_prospecto.html"
+    model = Prospecto
+    form_class = Prospectoform
+    success_url = reverse_lazy('app:tablaprospecto')
+
+    def form_valid(self, form):
+        alumnos = form.save(commit = False)
+        alumnos.user = self.request.user
+        alumnos.save()
+        return super(ProspectoCreateView, self).form_valid(form)
+
+    login_url = reverse_lazy('login_app:login')
 
 
-######################################  REFERIR CLIENTES
+def listaProspecto(request):
+
+    if request.user.is_staff: 
+        productosx = Prospecto.objects.all().order_by('nombre')
+    else:
+        productosx = Prospecto.objects.filter(user = request.user).order_by('nombre')
+
+    nombres = productosx
+
+    if request.POST.get('kword'):
+        nombre = request.POST.get('kword')
+        nombres = productosx.filter(cliente__icontains=nombre).order_by('cliente')
+    
+    paginator = Paginator(nombres, 4)  
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
+
+    return render(request, 'prospecto/tabla_prospecto.html', {'nombres':nombres,'users':users})
+
+
+class ProspectoUpdate(UpdateView):
+    template_name = "prospecto/add_prospecto.html"
+    model = Prospecto
+    fields = [ 
+        'nombre',
+        'telefono',
+        'fechac',            
+        'fechap',            
+        'fechai',
+        'interesado',
+        'inscrito',
+        'contactado',
+    ]
+    success_url = reverse_lazy('app:tablaprospecto')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, ** kwargs)
+
+
+class ProspectoDeleteView(DeleteView):
+    model = Prospecto
+    template_name = "prospecto/borrar_prospecto.html"
+    success_url = reverse_lazy('app:tablaprospecto')
+
+
+##xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  REFERIR CLIENTES
 class ClienteCreateView(LoginRequiredMixin,CreateView):
     template_name = "cliente/add_cliente.html"
     model = Amigo
@@ -135,6 +202,8 @@ class ClienteCreateView(LoginRequiredMixin,CreateView):
         return super(ClienteCreateView, self).form_valid(form)
 
     login_url = reverse_lazy('login_app:login')
+
+
 
 class ClienteUpdate(UpdateView):
     template_name = "cliente/add_cliente.html"

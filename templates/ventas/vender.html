@@ -18,8 +18,8 @@ lafayette
 
             <div class="mu-header-featured-content">
                 <h2>Bienvenido a lafayette</h2>
-                <p>Amigos de lafayette Inmobiliaria. <b> Quiero me ayuden a vender/rentar mi propiedad </b> </p>
-                <p>Les dejo mis datos para contactarme</p>
+                <p>Amigos de lafayette Inmobiliaria. Quiero me ayuden a vender/rentar mi propiedad. Les dejo mis datos para contactarme  </p>
+           
 
 
                 <form method="POST" enctype="multipart/form-data" novalidate> 
@@ -42,10 +42,34 @@ lafayette
                     <div class="row">
                       <div class="col">
                         {{ form.email|as_crispy_field }}
-                      </div> 
+                      </div>   
                         <div class="col">
                             {{ form.datos|as_crispy_field }}
-                          </div>     
+                        </div>  
+                        <div class="col">
+                          {{ form.cp|as_crispy_field }}
+                      </div>       
+                    </div>
+            
+                    <div class="row">
+                      <div class="col">
+                        {{ form.tipo|as_crispy_field }}
+                      </div>   
+                        <div class="col">
+                            {{ form.calle|as_crispy_field }}
+                        </div>  
+                        <div class="col">
+                          {{ form.colonia|as_crispy_field }}
+                      </div>       
+                    </div>
+            
+                    <div class="row">
+                      <div class="col">
+                        {{ form.municipio|as_crispy_field }}
+                      </div>   
+                        <div class="col">
+                            {{ form.estado|as_crispy_field }}
+                        </div>  
                     </div>
 
                       <div class="col">

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+
+{% block title %}
+    Socios
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="d-flex" id="content-wrapper">
+  {% include 'header.html' %}
+  <div class="w-100">
+      <div id="content" class="bg-grey w-100">
+        <div class="container" style="margin-top: 50px;  ">
+
+    <h5 >Desea Eliminar el Prospecto... !!</h5>
+
+    <div class="row">
+
+        <form  method="POST"> {% csrf_token %}
+            <div class="form-row ">
+
+                <div class="col-5"> 
+                    <button type="submit" class="btn text-white  bg-success">Confirmar...</button>
+                    </div>
+                </div>
+
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

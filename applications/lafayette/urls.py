@@ -16,9 +16,16 @@ urlpatterns = [
    path('addcliente/', views.ClienteCreateView.as_view(),name='addcliente'),
    path('updatecliente/<pk>/', views.ClienteUpdate.as_view(),name='updatecliente'),
    path('borrarcliente/<pk>/', views.ClienteDeleteView.as_view(),name='borrarcliente'),
+   
+
+   path('addprospecto/', views.ProspectoCreateView.as_view(),name='addprospecto'),
+   path('updateprospecto/<pk>/', views.ProspectoUpdate.as_view(),name='updateprospecto'),
+   path('borrarprospecto/<pk>/', views.ProspectoDeleteView.as_view(),name='borrarprospecto'),
+
 
    path('finventa/<pk>/', views.FinVenta,name='finventa'),
    path('tablacliente/', views.listaClientes,name='tablacliente'),
+   path('tablaprospecto/', views.listaProspecto,name='tablaprospecto'),
 
    path('ventacompra/', views.listaVentaCompra,name='ventacompra'),
    path('updateregistrar/<pk>/', views.RegistrarUpdate.as_view(),name='updateregistrar'),

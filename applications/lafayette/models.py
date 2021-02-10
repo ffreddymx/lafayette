@@ -57,5 +57,33 @@ class Contacto(models.Model):
     datos = models.CharField('Datos de la propiedad', max_length=600)
     email = models.EmailField('Correo Electronico')
 
+    ubicacion = models.CharField('Ubicación', max_length=50)
+    tipo = models.CharField('Tipo de inmueble', max_length=30)
+    municipio = models.CharField('Municipio', max_length=30)
+    estado = models.CharField('Estado', max_length=30)
+    colonia = models.CharField('Colonia', max_length=30)
+    calle = models.CharField('Calle', max_length=100)
+    cp = models.CharField('Código postal', max_length=5)
+    
+    def __str__(self):
+        return self.nombre 
+
+class Prospecto(models.Model):
+
+    inte = (
+        ('Si','Si'),
+        ('No','No'),
+    )
+
+    user = models.ForeignKey(Userr, null=True,blank=True, on_delete=models.CASCADE)
+    nombre = models.CharField('Nombre del Prospecto', max_length=60)
+    telefono = models.CharField('Número de teléfono', max_length=10)
+    fechac = models.DateField('Fecha de contacto')
+    fechap = models.DateField('Fecha de plática')
+    fechai = models.DateField('Fecha de Inscripción')
+    interesado = models.CharField('Interesado', max_length=20,choices=inte)
+    inscrito = models.CharField('Inscrito', max_length=20,choices=inte)
+    contactado = models.CharField('Contactado', max_length=20,choices=inte)
+
     def __str__(self):
         return self.nombre 

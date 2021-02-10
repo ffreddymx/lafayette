@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
+
+{% block title %}
+    
+{% endblock title %}
+    
+{% block content %}
+
+<div class="d-flex" id="content-wrapper">
+    {% include 'header.html' %}
+    
+    <div class="w-100">
+        <div id="content" class="bg-grey w-100">
+  
+  <div class="container" style="margin-top: 20px;  ">
+    <h5>Agregar un Prospecto</h5>
+
+      <form method="POST" enctype="multipart/form-data" novalidate> 
+        {% csrf_token %} 
+        <div class="row">
+  
+          <div class="col">
+            {{ form.nombre|as_crispy_field }}
+          </div>         
+          <div class="col">
+            {{ form.telefono|as_crispy_field }}
+          </div>         
+          
+          <div class="col">
+            {{ form.interesado|as_crispy_field }}
+          </div>          
+        </div>
+
+        <div class="row">
+          <div class="col">
+            {{ form.fechac|as_crispy_field }}
+          </div>
+          <div class="col">
+            {{ form.fechap|as_crispy_field }}
+          </div>         
+          <div class="col">
+            {{ form.fechai|as_crispy_field }}
+          </div>         
+        </div>
+
+        <div class="row">
+            <div class="col">
+              {{ form.inscrito|as_crispy_field }}
+            </div>     
+            <div class="col">
+              {{ form.contactado|as_crispy_field }}
+            </div>           
+        </div>
+
+          <div class="col">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-secondary" onclick="javascript:history.back();">Cancelar</a>
+           </div> 
+
+      </form>
+
+</div>
+
+{% endblock content %}
