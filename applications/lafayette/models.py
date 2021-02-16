@@ -80,7 +80,7 @@ class Prospecto(models.Model):
     telefono = models.CharField('Número de teléfono', max_length=10)
     fechac = models.DateField('Fecha de contacto')
     fechap = models.DateField('Fecha de plática')
-    fechai = models.DateField('Fecha de Inscripción')
+    fechai = models.DateField('Fecha de Inscripción',blank=True)
     interesado = models.CharField('Interesado', max_length=20,choices=inte)
     inscrito = models.CharField('Inscrito', max_length=20,choices=inte)
     contactado = models.CharField('Contactado', max_length=20,choices=inte)
