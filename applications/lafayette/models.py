@@ -45,6 +45,8 @@ class Amigo(models.Model):
     def __str__(self):
         return self.cliente 
 
+
+
 class Contacto(models.Model):
     opc = (
         ('Vender','Vender'),
@@ -57,7 +59,7 @@ class Contacto(models.Model):
     datos = models.CharField('Datos de la propiedad', max_length=600)
     email = models.EmailField('Correo Electronico')
 
-    ubicacion = models.CharField('Ubicación', max_length=50)
+    #ubicacion = models.CharField('Ubicación', max_length=50)
     tipo = models.CharField('Tipo de inmueble', max_length=30)
     municipio = models.CharField('Municipio', max_length=30)
     estado = models.CharField('Estado', max_length=30)
@@ -80,7 +82,7 @@ class Prospecto(models.Model):
     telefono = models.CharField('Número de teléfono', max_length=10)
     fechac = models.DateField('Fecha de contacto')
     fechap = models.DateField('Fecha de plática')
-    fechai = models.DateField('Fecha de Inscripción',blank=True)
+    fechai = models.DateField('Fecha de Inscripción',blank=True,null=True)
     interesado = models.CharField('Interesado', max_length=20,choices=inte)
     inscrito = models.CharField('Inscrito', max_length=20,choices=inte)
     contactado = models.CharField('Contactado', max_length=20,choices=inte)

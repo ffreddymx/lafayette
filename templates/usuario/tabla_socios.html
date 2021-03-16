@@ -27,9 +27,9 @@
                 <th>Nivel</th>
                 {% if request.user.is_staff  %}
                 <th width="20" >Editar</th>
+                <th width="20" >Eliminar</th>
                 {% endif   %}
 
-                <th width="20" >Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,15 +54,19 @@
                  {% endif   %}
                 </td>
 
+
+                {% if request.user.is_staff  %}
+
                 {% if request.user.is_staff  %}
                 <td width="20" align="center"><a class="btn btn-sm btn-info " href=" {% url 'login_app:user-update' e.id  %} "><i class="icon ion-md-brush mr-0"></i></a></td>
                 {% endif   %}
-
 
                 {% if not e.is_staff  %}
                 <td width="20" align="center"><a class="btn btn-sm btn-danger" href=" {% url 'login_app:borraruser' e.id  %} "><i class="icon ion-md-trash mr-0"></i></a></td>
                 {% else %} 
                 <td width="20" align="center" ><a class="btn btn-sm btn-danger" >SU</a></td>
+                {% endif   %}
+
                 {% endif   %}
 
             </tr>

@@ -8,10 +8,8 @@
         <a href="{% url 'app:inicio' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
             Inicio</a>
 
-            {% if request.user.is_staff  %}   
         <a href="{% url 'login_app:listuser' %}" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
             Socios Registrados</a>
-            {% endif   %}
 
 
         <a href="{% url 'app:tablacliente' %}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-appstore lead mr-2"></i>

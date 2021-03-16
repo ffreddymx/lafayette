@@ -85,7 +85,10 @@ class Amigoform(forms.ModelForm):
             raise forms.ValidationError('Este campo solo puede contener números')
         return telefono
 
-class Contactoform(forms.ModelForm):
+
+
+
+class Contactoform(forms.ModelForm):#aqui el problema
     class Meta:
         model = Contacto
         fields = ('__all__')
@@ -135,6 +138,11 @@ class Contactoform(forms.ModelForm):
         if not colonia.isalpha() :
             raise forms.ValidationError('Este campo solo puede contener texto')
         return colonia
+ 
+
+
+
+
 
 class Prospectoform(forms.ModelForm):
     class Meta:

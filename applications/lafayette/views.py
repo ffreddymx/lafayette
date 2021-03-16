@@ -69,10 +69,9 @@ class RegistrarUpdate(UpdateView):
         'opcion',
         'datos',
         'email',
-
-        'ubicacion',
         'tipo',
         'municipio',
+        'estado',
         'colonia',
         'calle',
         'cp',
@@ -92,7 +91,7 @@ class RegistrarDeleteView(DeleteView):
 
 
 
-class ContactoCreateView(CreateView):
+class ContactoCreateView(CreateView):#aqui el problema
     template_name = "ventas/vender.html"
     model = Contacto
     form_class = Contactoform
